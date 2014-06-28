@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("mysql", " root:root@/test?charset=utf8")
+	db, err := sql.Open("mysql", " root:root@tcp(192.168.77.107:3306)/test?charset=utf8")
 	checkErr(err)
 
 	stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
@@ -22,10 +22,10 @@ func main() {
 
 	fmt.Println(id)
 	//更新数据
-	stmt, err := db.Prepare("update userinfo set username = ? where uid = ?")
+	stmt, err = db.Prepare("update userinfo set username = ? where uid = ?")
 	checkErr(err)
 
-	res, err := db.Exec("hankai1", id)
+	res, err = db.Exec("hankai1", id)
 	checkErr(err)
 
 	affect, err := res.RowsAffected()
