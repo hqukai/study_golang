@@ -29,9 +29,11 @@ func login(w http.ResponseWriter, r *http.Request) {
 		t, _ := template.ParseFiles("login.gtpl")
 		t.Execute(w, nil)
 	} else {
+		r.ParseForm()
 		//请求的是登陆数据，那么执行登陆的逻辑判断
 		fmt.Println("username:", r.Form["username"])
 		fmt.Println("password:", r.Form["password"])
+		fmt.Fprintf(w, "登录成功")
 	}
 }
 
